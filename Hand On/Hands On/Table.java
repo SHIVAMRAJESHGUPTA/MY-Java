@@ -8,11 +8,11 @@ public class Table {
 
 	public static void main(String[] args)
 	{
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);// User input
 		System.out.println("Enter the number : ");
 		int num = sc.nextInt();
 		
-		for(int i=1;i<=10;i++)
+		for(int i=1;i<=10;i++)	//For loop using for create table
 		{
 			System.out.println(i*num);
 		}
