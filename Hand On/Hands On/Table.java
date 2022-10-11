@@ -1,3 +1,7 @@
+/* Print any Multiplication table for loop take the input from the user in all the program 
+Name :- Shivam
+Date :- 11-10-22
+*/
 package Shivam;
 import java.util.*;
 public class Table {
