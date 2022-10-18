@@ -1,6 +1,6 @@
-/* WAP to Add 2 Matrix
+/* WAP to Add,mul,div,sub 2 Matrix
  * Name:Shivam_Gupta
- * Date:17-10-22
+ * Date:18-10-22
  */
 
 package Shivam;
