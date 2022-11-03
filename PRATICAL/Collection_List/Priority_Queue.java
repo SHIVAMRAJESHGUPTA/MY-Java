@@ -1,30 +1,34 @@
 package Shivam;
-import java.util.*;
+
 import static java.lang.System.out;
 
-public class Priority_Queue {
+import java.util.*;
+
+  public class Priority_Queue {
+
 	public static void main(String...args) {
+			
+		Queue<Integer> obj = new PriorityQueue<>(Collections.reverseOrder());
+		//Using Add() Method 
+		obj.add(17);
+		obj.add(11);
+		obj.add(51);
+		obj.add(30);
+		obj.add(89);
+		obj.add(77);
+		obj.add(76);
+		obj.add(100);
+		obj.add(55);
 		
-		//using linkedList class to create queue.
-				Queue<Integer> input = new PriorityQueue<>();
-				//offer elements to the queue
-				input.offer(15);
-				input.offer(55);
-				input.offer(85);
-				input.offer(2);
-				out.println("Queue is: "+input);
-				
-				//access element of the queue using peek() method
-				int i = input.peek();
-				out.println("access element: " + i);
-				
-				//remove element from the queue using poll() method
-				int j = input.poll();
-				out.println("removed element: " + j);
-				
-				out.println("the updated is queue: "+input);
+		out.println("ArrayList of obj is "+obj);
 		
-		
+		Integer val = null;
+		// While Loop
+		while((val = obj.poll()) != null)
+		{
+			System.out.print(val+" ");
+		}
+		out.println(" ");
 	}
 
 }
