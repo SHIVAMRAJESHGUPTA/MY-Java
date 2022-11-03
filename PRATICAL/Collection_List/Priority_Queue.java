@@ -1,3 +1,8 @@
+/*
+Write a Java program to change priorityQueue to maximum priorityqueue.(you can use any loop)
+date:-3-11-22
+Name:-Shivam_Gupta
+*/
 package Shivam;
 
 import static java.lang.System.out;
