@@ -1,4 +1,6 @@
 /*Write a Java program to check if a particular element exists in a linked list.
+Date:3-11-22
+Name:Shivam_Gupta
 */
 package Shivam;
 
