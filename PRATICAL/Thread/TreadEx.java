@@ -5,9 +5,7 @@ package Shivam;
  * before using any attributes that the thread can change.
  */
 public class TreadEx extends Thread {
-	
-	 class Thread_Ex extends Thread
-	 { 	
+	 	
 		public static int amount=0;
 		public static void main(String[] args) 
 		{
