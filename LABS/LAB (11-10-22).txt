@@ -1,0 +1,205 @@
+--Name:- Shivam Rajesh Gupta 
+--Date :- 11-10-22
+
+
+mysql> create database Anudip;
+ERROR 1007 (HY000): Can't create database 'anudip'; database exists
+mysql> use Anudip;
+Database changed
+mysql> create table students(
+    -> s_id int not null,
+    -> s_name varchar(20) not null,
+    -> course_name varchar(10) not null,
+    -> primary key(s_id));
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> insert into students(s_id,s_name,course_name)values(1,'shivam','java');
+Query OK, 1 row affected (0.23 sec)
+
+mysql> insert into students(s_id,s_name,course_name)values(2,'vishal','java'),(3,'aditya','python'),(4,'nive','dotnet');
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table Teachers(
+    -> T_id int not null,
+    -> T_name varchar(30) not null,
+    -> address varchar(30) not null,
+    -> primary key(T_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 5
+mysql> create table Teachers(
+    -> T_id int not null,
+    -> T_name varchar(30) not null,
+    -> address varchar(30) not null,
+    -> primary key(T_id));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into students(s_id,s_name,course_name)values(1,'Samik','java'),(2,'Anju','java'),(3,'iram','python'),(4,'rafiya','.net'),(5,'wendrich');
+ERROR 1136 (21S01): Column count doesn't match value count at row 5
+mysql> insert into students(s_id,s_name,course_name)values(1,'Samik','java'),(2,'Anju','java'),(3,'iram','python'),(4,'rafiya','.net'),(5,'wendrich','');
+ERROR 1062 (23000): Duplicate entry '1' for key 'students.PRIMARY'
+mysql> insert into students(s_id,s_name,course_name)values(1,'Samik','java'),(2,'Anju','java'),(3,'iram','python'),(4,'rafiya','.net'),(5,'wendrich','iot');
+ERROR 1062 (23000): Duplicate entry '1' for key 'students.PRIMARY'
+mysql> insert into Teachers(T_id,T_name,address)values(1,'Samik','Bangalore'),(2,'Anju','Mumbai'),(3,'iram','Bhiwandi'),(4,'rafiya','Ghatkoper'),(5,'wendrich','Kalyan');
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select*from students;
++------+--------+-------------+
+| s_id | s_name | course_name |
++------+--------+-------------+
+|    1 | shivam | java        |
+|    2 | vishal | java        |
+|    3 | aditya | python      |
+|    4 | nive   | dotnet      |
++------+--------+-------------+
+4 rows in set (0.04 sec)
+
+mysql> select*from Teachers;
++------+----------+-----------+
+| T_id | T_name   | address   |
++------+----------+-----------+
+|    1 | Samik    | Bangalore |
+|    2 | Anju     | Mumbai    |
+|    3 | iram     | Bhiwandi  |
+|    4 | rafiya   | Ghatkoper |
+|    5 | wendrich | Kalyan    |
++------+----------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select Teachers.T_name,Teachers.address,students.s_name,Teachers.course_name from Teachers
+    -> INNER JOIN students
+    -> ON Teachers.T_id=students.s_id;
+ERROR 1054 (42S22): Unknown column 'Teachers.course_name' in 'field list'
+mysql> select Teachers.T_name,Teachers.address,students.s_name,course_name from Teachers
+    -> INNER JOIN students
+    -> ON Teachers.T_id=students.s_id;
++--------+-----------+--------+-------------+
+| T_name | address   | s_name | course_name |
++--------+-----------+--------+-------------+
+| Samik  | Bangalore | shivam | java        |
+| Anju   | Mumbai    | vishal | java        |
+| iram   | Bhiwandi  | aditya | python      |
+| rafiya | Ghatkoper | nive   | dotnet      |
++--------+-----------+--------+-------------+
+4 rows in set (0.02 sec)
+
+mysql> select Teachers.T_name,Teachers.address,students.s_name,course from Teachers
+    -> LEFT JOIN students
+    -> ON Teachers.T_id=students.s_id;
+ERROR 1054 (42S22): Unknown column 'course' in 'field list'
+mysql> select Teachers.T_name,Teachers.address,students.s_name,course_name from Teachers
+    -> LEFT JOIN students
+    -> ON Teachers.T_id=students.s_id;
++----------+-----------+--------+-------------+
+| T_name   | address   | s_name | course_name |
++----------+-----------+--------+-------------+
+| Samik    | Bangalore | shivam | java        |
+| Anju     | Mumbai    | vishal | java        |
+| iram     | Bhiwandi  | aditya | python      |
+| rafiya   | Ghatkoper | nive   | dotnet      |
+| wendrich | Kalyan    | NULL   | NULL        |
++----------+-----------+--------+-------------+
+5 rows in set (0.04 sec)
+
+mysql> select Teachers.T_name,Teachers.address,students.s_name,course from Teachers
+    -> RIGHT JOIN students
+    -> ON Teachers.T_id=students.s_id;
+ERROR 1054 (42S22): Unknown column 'course' in 'field list'
+mysql> select Teachers.T_name,Teachers.address,students.s_name,course_name from Teachers
+    -> RIGHT JOIN students
+    -> ON Teachers.T_id=students.s_id;
++--------+-----------+--------+-------------+
+| T_name | address   | s_name | course_name |
++--------+-----------+--------+-------------+
+| Samik  | Bangalore | shivam | java        |
+| Anju   | Mumbai    | vishal | java        |
+| iram   | Bhiwandi  | aditya | python      |
+| rafiya | Ghatkoper | nive   | dotnet      |
++--------+-----------+--------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into students(s_id,s_name,course_name)values(5,'moni','MPSC');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select Teachers.T_name,Teachers.address,students.s_name,course_name from Teachers
+    -> RIGHT JOIN students
+    -> ON Teachers.T_id=students.s_id;
++----------+-----------+--------+-------------+
+| T_name   | address   | s_name | course_name |
++----------+-----------+--------+-------------+
+| Samik    | Bangalore | shivam | java        |
+| Anju     | Mumbai    | vishal | java        |
+| iram     | Bhiwandi  | aditya | python      |
+| rafiya   | Ghatkoper | nive   | dotnet      |
+| wendrich | Kalyan    | moni   | MPSC        |
++----------+-----------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into students(s_id,s_name,course_name)values(6,'bhakti','java,.net');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select Teachers.T_name,Teachers.address,students.s_name,course_name from Teachers
+    -> RIGHT JOIN students
+    -> ON Teachers.T_id=students.s_id;
++----------+-----------+--------+-------------+
+| T_name   | address   | s_name | course_name |
++----------+-----------+--------+-------------+
+| Samik    | Bangalore | shivam | java        |
+| Anju     | Mumbai    | vishal | java        |
+| iram     | Bhiwandi  | aditya | python      |
+| rafiya   | Ghatkoper | nive   | dotnet      |
+| wendrich | Kalyan    | moni   | MPSC        |
+| NULL     | NULL      | bhakti | java,.net   |
++----------+-----------+--------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select students.s_name,course_name,Teachers.T_name from students
+    -> RIGHT JOIN Teachers
+    -> ON students.s_id=Teachers.T_id;
++--------+-------------+----------+
+| s_name | course_name | T_name   |
++--------+-------------+----------+
+| shivam | java        | Samik    |
+| vishal | java        | Anju     |
+| aditya | python      | iram     |
+| nive   | dotnet      | rafiya   |
+| moni   | MPSC        | wendrich |
++--------+-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select*from Teachers FULL JOIN students;
++------+----------+-----------+------+--------+-------------+
+| T_id | T_name   | address   | s_id | s_name | course_name |
++------+----------+-----------+------+--------+-------------+
+|    5 | wendrich | Kalyan    |    1 | shivam | java        |
+|    4 | rafiya   | Ghatkoper |    1 | shivam | java        |
+|    3 | iram     | Bhiwandi  |    1 | shivam | java        |
+|    2 | Anju     | Mumbai    |    1 | shivam | java        |
+|    1 | Samik    | Bangalore |    1 | shivam | java        |
+|    5 | wendrich | Kalyan    |    2 | vishal | java        |
+|    4 | rafiya   | Ghatkoper |    2 | vishal | java        |
+|    3 | iram     | Bhiwandi  |    2 | vishal | java        |
+|    2 | Anju     | Mumbai    |    2 | vishal | java        |
+|    1 | Samik    | Bangalore |    2 | vishal | java        |
+|    5 | wendrich | Kalyan    |    3 | aditya | python      |
+|    4 | rafiya   | Ghatkoper |    3 | aditya | python      |
+|    3 | iram     | Bhiwandi  |    3 | aditya | python      |
+|    2 | Anju     | Mumbai    |    3 | aditya | python      |
+|    1 | Samik    | Bangalore |    3 | aditya | python      |
+|    5 | wendrich | Kalyan    |    4 | nive   | dotnet      |
+|    4 | rafiya   | Ghatkoper |    4 | nive   | dotnet      |
+|    3 | iram     | Bhiwandi  |    4 | nive   | dotnet      |
+|    2 | Anju     | Mumbai    |    4 | nive   | dotnet      |
+|    1 | Samik    | Bangalore |    4 | nive   | dotnet      |
+|    5 | wendrich | Kalyan    |    5 | moni   | MPSC        |
+|    4 | rafiya   | Ghatkoper |    5 | moni   | MPSC        |
+|    3 | iram     | Bhiwandi  |    5 | moni   | MPSC        |
+|    2 | Anju     | Mumbai    |    5 | moni   | MPSC        |
+|    1 | Samik    | Bangalore |    5 | moni   | MPSC        |
+|    5 | wendrich | Kalyan    |    6 | bhakti | java,.net   |
+|    4 | rafiya   | Ghatkoper |    6 | bhakti | java,.net   |
+|    3 | iram     | Bhiwandi  |    6 | bhakti | java,.net   |
+|    2 | Anju     | Mumbai    |    6 | bhakti | java,.net   |
+|    1 | Samik    | Bangalore |    6 | bhakti | java,.net   |
++------+----------+-----------+------+--------+-------------+
+30 rows in set (0.00 sec)
