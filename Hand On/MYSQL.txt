@@ -1,0 +1,72 @@
+       ,,mysql> create database Anudip;
+Query OK, 1 row affected (0.08 sec)
+
+mysql> use Student;
+ERROR 1049 (42000): Unknown database 'student'
+mysql> use 'Student';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Student'' at line 1
+mysql> use Anudip;
+Database changed
+mysql> create table student(
+    -> id int not null auto_increment,
+    -> Name varchar(10) not null,
+    -> age int not null,
+    -> primary key(id)
+    -> );
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_anudip |
++------------------+
+| student          |
++------------------+
+1 row in set (0.05 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| Name  | varchar(10) | NO   |     | NULL    |                |
+| age   | int         | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.02 sec)
+
+mysql> insert into student(id,name,age)values(1,'Shivam',21);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student(id,name,age)values(2,'Nive',21);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(id,name,age)values(3,'Ganesh',57);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student(id,name,age)values(4,'Dinesh',23);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++----+--------+-----+
+| id | Name   | age |
++----+--------+-----+
+|  1 | Shivam |  21 |
+|  2 | Nive   |  21 |
+|  3 | Ganesh |  57 |
+|  4 | Dinesh |  23 |
++----+--------+-----+
+4 rows in set (0.00 sec)
+
+mysql> update student set name='pratham',age=23 where id=4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+---------+-----+
+| id | Name    | age |
++----+---------+-----+
+|  1 | Shivam  |  21 |
+|  2 | Nive    |  21 |
+|  3 | Ganesh  |  57 |
+|  4 | pratham |  23 |
++----+---------+-----+
+4 rows in set (0.00 sec)
