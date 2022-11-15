@@ -1,0 +1,36 @@
+mysql> use Anudip
+Database changed
+mysql> select*from song;
++--------+--------+--------------+
+| songId | singer | songName     |
++--------+--------+--------------+
+|      1 | Akon   | Broken Angel |
++--------+--------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select*from song;
++--------+--------+--------------+
+| songId | singer | songName     |
++--------+--------+--------------+
+|      1 | Akon   | Broken Angel |
++--------+--------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select*from song;
++--------+-------------+--------------+
+| songId | singer      | songName     |
++--------+-------------+--------------+
+|      1 | Akon        | Broken Angel |
+|      2 | Atif asalam | Jeena Jeena  |
++--------+-------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from song;
++--------+-----------------+--------------+
+| songId | singer          | songName     |
++--------+-----------------+--------------+
+|      1 | Akon            | Broken Angel |
+|      2 | Atif asalam     | Jeena Jeena  |
+|      3 | Azaan Sami Khan | Ik lamha     |
++--------+-----------------+--------------+
+3 rows in set (0.00 sec)
