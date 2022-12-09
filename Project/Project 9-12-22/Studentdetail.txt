@@ -1,0 +1,60 @@
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show database
+    -> ^C
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| anudip             |
+| hibernate_db       |
+| information_schema |
+| mysql              |
+| nivedita           |
+| performance_schema |
+| studentdata        |
+| sys                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use studentdata;
+Database changed
+mysql> show tables
+    -> ^C
+mysql> show tables;
++-----------------------+
+| Tables_in_studentdata |
++-----------------------+
+| student_details       |
++-----------------------+
+1 row in set (0.04 sec)
+
+mysql> desc student
+    -> desc student_^C
+mysql> desc student_details;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int          | NO   | PRI | NULL    | auto_increment |
+| student_email | varchar(255) | YES  |     | NULL    |                |
+| student_phone | bigint       | YES  |     | NULL    |                |
+| student_name  | varchar(255) | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.04 sec)
+
+mysql> insert into student_details values (1,'shivam@gmail.com',9645281543,'shivam');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into student_details values (2,'Aditya@gmail.com',9645282243,'aditya'),(3,'vishal@gmail.com',1234567890,'vishal');
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select*from student_details;
++----+------------------+---------------+--------------+
+| id | student_email    | student_phone | student_name |
++----+------------------+---------------+--------------+
+|  1 | shivam@gmail.com |    9645281543 | shivam       |
+|  2 | Aditya@gmail.com |    9645282243 | aditya       |
+|  3 | vishal@gmail.com |    1234567890 | vishal       |
++----+------------------+---------------+--------------+
+3 rows in set (0.00 sec)
